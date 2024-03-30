@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#dateOfBirth1").datepicker();
+$("#dateOfBirth2").datepicker({
+altField : "#dob2",
+altFormat : 'd/m/yy'
+});
+
+$("#dateOfBirth3").datepicker({
+altField : "#dob3",
+altFormat : 'd/m/yy',
+defaultDate : "10/05/1996",
+dateFormat : "d/mm/yy"
+});
+
+
+});
+/*
+format specifiers
+d : single digit date in case of 1 to 9
+d : double digit date
+m : single digit month in case of 1 to 9
+mm : double digit month
+y : year as  ->24
+yy : year as ->2024
+M : month 'Feb'
+MM : month 'February'
+D : day in short form 'Thu'
+DD : day 'Thursday'
+*/
+
+</script>
+</head>
+<body>
+<h1>Example 56</h1>
+<div id='dateOfBirth1'></div><br/><br/>
+<div id='dateOfBirth2'></div><br>
+<input type='text' id='dob2'><br/><br/>
+
+<div id='dateOfBirth3'></div><br>
+<input type='text' id='dob3'><br/><br/>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

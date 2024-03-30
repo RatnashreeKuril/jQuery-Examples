@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+
+var clock;
+function updateTime()
+{
+
+var t=new Date();
+var now=t.getHours()+":"+t.getMinutes()+":"+t.getSeconds();
+$("#theTime").html(now);
+
+}
+
+function startClock()
+{
+updateTime();
+clock=setInterval(updateTime,1000); // 1 sec, 1000 milisec
+}
+function stopClock()
+{
+clearInterval(clock);
+}
+
+
+
+</script>
+</head>
+<body>
+<h1>Example 50</h1>
+Time <span id='theTime'></span><br></br>
+<button type='button' onClick='startClock()'>Start Clock</button>
+<br/><br/>
+<button type='button' onClick='stopClock()'>Stop Clock</button>
+<br/><br/>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

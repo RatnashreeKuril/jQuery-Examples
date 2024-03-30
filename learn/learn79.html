@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+.list
+{
+border : 1px solid gray;
+width : 150px;
+padding : 10px;
+}
+.list li
+{
+padding : 4px;
+list-style : none;
+cursor : pointer;
+}
+.list li:hover
+{
+color : white;
+background-color : orange;
+}
+</style>
+<script>
+
+function getAllSubjects()
+{
+var promise=new Promise((resolve,reject)=>{
+fetch("getAllSubjects").then((response)=>{
+if(!response.ok) throw Error("Unable to fetch data, try after some time");
+return response.json();
+}).then((subjects)=>{
+resolve(subjects);
+}).catch((err)=>{
+reject(err);
+});
+});
+return promise;
+}
+function updateAllSubjects(obj)
+{
+var dataString=`remove=${encodeURI(obj.remove)}&receive=${encodeURI(obj.receive)}&id=${obj.id}`;
+//alert(dataString);
+var promise=new Promise((resolve,reject)=>{
+fetch("updateAllSubjects",{
+method : "POST",
+headers : {
+"Content-Type" : "application/x-www-form-urlencoded"
+},
+body : dataString
+}).then().then().catch((err)=>{
+reject(err.message);
+
+});
+});
+return promise;
+}
+
+var obj={};
+$(()=>{
+
+getAllSubjects().then((allSubjects)=>{
+var subjectsList=$("#subjects");
+var selectedSubjectsList=$("#selectedSubjects");
+var subjects=allSubjects.subjects;
+var selectedSubjects=allSubjects.selectedSubjects;
+var li;
+for(var i=0;i<subjects.length;i++)
+{
+li=$(`<li id='${subjects[i].id}'>${subjects[i].name}</li>`);
+subjectsList.append(li);
+}
+
+for(var i=0;i<selectedSubjects.length;i++)
+{
+li=$(`<li id='${selectedSubjects[i].id}'>${selectedSubjects[i].name}</li>`);
+selectedSubjectsList.append(li);
+}
+
+},(err)=>{
+alert(err.message);
+});
+
+
+
+$("#subjects").disableSelection();
+
+
+$("#subjects").sortable({
+connectWith : ".list",
+dropOnEmpty : true,
+remove : function(ev,ui){
+//alert("Subjects (removed) : "+ui.item.prop('id'));
+var id=ui.item.prop('id');
+obj={"remove" : "subjects", "id" : id};
+},
+receive : function(ev,ui){
+//alert("Subjects (received) : "+ui.item.prop('id'));
+
+var id=ui.item.prop('id');
+obj={...obj, "receive" : "subjects"};
+updateAllSubjects(obj).then(()=>{
+alert("Done");
+},(err)=>{
+alert(err.message);
+});
+
+}
+});
+
+$("#selectedSubjects").disableSelection();
+$("#selectedSubjects").sortable({
+connectWith : ".list",
+dropOnEmpty : true,
+remove : function(ev,ui){
+//alert("Selected Subjects (removed) : "+ui.item.prop('id'));
+var id=ui.item.prop('id');
+obj={"remove" : "selectedSubjects", "id" : id};
+},
+receive : function(ev,ui){
+//alert("Selected Subjects (received) : "+ui.item.prop('id'));
+var id=ui.item.prop('id');
+obj={...obj, "receive" : "selectedSubjects"};
+updateAllSubjects(obj).then(()=>{
+alert("Done");
+},(err)=>{
+alert(err.message);
+});
+}
+});
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 79</h1>
+<h3>Subjects</h3>
+<ul id='subjects' class='list'>
+
+</ul>
+<br><br>
+
+<h3>Selected Subjects</h3>
+<ul id='selectedSubjects' class='list'>
+
+</ul>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

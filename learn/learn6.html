@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+table {
+border : 1px solid black;
+border-collapse : collapse;
+}
+
+table td,th {
+border : 1px solid black;
+padding : 10px;
+}
+.xyz{
+color:white;
+background-color:orange;
+}
+</style>
+<script>
+$(()=>{
+//$("tbody>tr:even").addClass("xyz");
+
+
+$("tbody>tr:even").addClass("xyz");
+
+
+});
+function doSomething()
+{
+/*
+alert($("tbody>tr:nth-child(2)").html());
+alert($("tbody>tr:eq(2)").html());
+alert($("tr:contains(MAQ)").html());
+*/
+
+//alert($("tbody>tr:nth-child(3)").html());
+//alert($("tbody>tr:eq(1)").html());
+alert($("tbody>tr:contains(Wiley)").html());
+
+
+
+}
+</script>
+
+</head>
+<body>
+<h1>Example 6</h1>
+<p>Thinking Machines - Placements 2021</p><br>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Company</th>
+<th>Package</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>Yash Govindani</td>
+<td>Internship</td>
+<td>InvesTrack</td>
+<td>15000 Per Month</td>
+</tr>
+
+<tr>
+<td>Akshita</td>
+<td>Full time</td>
+<td>Wiley</td>
+<td>7 LPA</td>
+</tr>
+
+<tr>
+<td>Nikhil Soni</td>
+<td>Full time</td>
+<td>GROW</td>
+<td>20 LPA</td>
+</tr>
+
+<tr>
+<td>Sapan</td>
+<td>Full time</td>
+<td>MAQ Software</td>
+<td>6 LPA</td>
+</tr>
+
+
+
+
+
+</tbody>
+</table>
+<button type='button' onclick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+
+</body>
+</html>

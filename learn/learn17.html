@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src="jquery/jquery-3.7.1.min.js"></script>
+<script>
+$(()=>{
+
+// practice
+
+$("#city").change(function(){
+alert($(this).find(":selected").val());
+alert($(this).find(":selected").text());
+});
+
+
+
+
+// practice
+
+
+
+
+/*
+$("#button1").on('click',()=>{
+alert('Button clicked');
+});
+*/
+
+// The difference btw 'change' and 'input' event is that change 
+// event is triggred when the focus is shifted to other components,
+// whereas this is not the case with input. Therefore input is used.
+/*
+$("#text1").on('change',()=>{
+alert("text 1 changed");
+});
+*/
+
+/*
+$("#text1").on('input',()=>{
+alert("text 1 changed");
+});
+*/
+
+// Getting the contents of text box
+/*
+$("#text1").on('input',(ev)=>{
+alert("text 1 changed "+ev.target.value);
+});
+*/
+
+/*
+$("#text1").on('focus',()=>{
+$("#noticeBoard1").html("text1 got focus");
+});
+
+$("#text2").on('focus',()=>{
+$("#noticeBoard1").html("text2 got focus");
+});
+
+$("#text1").on('blur',()=>{
+$("#noticeBoard2").html("text1 lost focus");
+});
+
+$("#text2").on('blur',()=>{
+$("#noticeBoard2").html("text2 lost focus");
+});
+*/
+/*
+$("#city").on('change',()=>{
+alert("city changed");
+});
+*/
+
+// without jQuery :-
+/*
+$("#city").on('change',(ev)=>{
+alert("city changed : value ----> "+ev.target.value);
+alert("city changed : selectedIndex ----> "+ev.target.selectedIndex);
+alert("city changed : "+ev.target.options[ev.target.selectedIndex].text);
+
+});
+*/
+
+// with jQuery :-
+/*
+The following won't work as 'this' in arrow function does not get 
+bounded with the object for which the event was designed to be fired
+$("#city").on('change',(ev)=>{
+alert($(this).html());
+});
+*/
+// Solution for the above problem  :-
+/*
+// 1)
+$("#city").on('change',function(){
+alert($(this).find(":selected").val());
+alert($(this).find(":selected").text());
+});
+
+*/
+// 2)
+/*
+$("#city").on('change',(ev)=>{
+alert($(ev.target).html());
+alert($(ev.target).find(":selected").val());
+alert($(ev.target).find(":selected").text());
+});
+
+*/
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 17</h1>
+Button1 <button type='button' id='button1'>Click me</button><br>
+Text 1 <input type='text' id='text1'><br>
+Text 2 <input type='text' id='text2'><br>
+Select City
+<select id='city'>
+<option value='1'>Ujjain</option>
+<option value='2'>Indore</option>
+<option value='3'>Dewas</option>
+<option value='4'>Mumbai</option>
+<option value='5'>Pune</option>
+
+</select>
+<hr>
+<div id='noticeBoard1'></div>
+<div id='noticeBoard2'></div>
+
+<br><a href='/index.html'>Home</a>
+</body>
+</html>

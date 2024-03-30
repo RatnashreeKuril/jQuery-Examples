@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#thinkingmachines").hide();
+});
+
+const doSomething=()=>{
+
+$("#thinkingmachines").dialog({
+"title" : "Notification",
+"width" : 500,
+"height" : 400,
+"resizable" : true,
+"modal" : true,
+"maxWidth" : 600,
+"maxHeight" : 500,
+"minWidth" : 400,
+"minHeight" : 300,
+"closeOnEscape" : false,
+"show" : {effect : "fadeIn", duration : 2000},
+"hide" : {effect : "fadeOut", duration : 2000}
+});
+
+
+}
+
+
+
+</script>
+</head>
+<body>
+<h1>Example 69</h1>
+
+<div id='thinkingmachines'>
+<h1>Thinking Machines</h1>
+<h3>Think Big</h3>
+<h5>We Teach More Than We Promise To Teach</h5>
+</div>
+<br>
+<br>
+Enter your name 
+<input type='text' id='name'>
+<br/>
+<br/>
+<button type='button' onClick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

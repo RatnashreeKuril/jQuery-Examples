@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+.list
+{
+border : 1px solid gray;
+width : 150px;
+padding : 10px;
+}
+.list li
+{
+padding : 4px;
+list-style : none;
+cursor : pointer;
+}
+.list li:hover
+{
+color : white;
+background-color : orange;
+}
+</style>
+<script>
+function getTeams()
+{
+var promise=new Promise((resolve,reject)=>{
+fetch("/getTeams").then((response)=>{
+return response.json();
+}).then((teams)=>{
+resolve(teams);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+function getPlayers()
+{
+var promise=new Promise((resolve,reject)=>{
+fetch("/getPlayers").then((response)=>{
+return response.json();
+}).then((players)=>{
+resolve(players);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+
+function updateTeams(obj)
+{
+var dataString=`receive=${encodeURI(obj.receive)}&id=${obj.id}`
+alert(dataString);
+var promise=new Promise((resolve,reject)=>{
+fetch("updateTeams",{
+method : "POST",
+headers : {
+"Content-Type" : "application/x-www-form-urlencoded"
+},
+body : dataString
+}).then((response)=>{
+return response.json();
+}).then((result)=>{
+resolve(result);
+}).catch((err)=>{
+reject(err.message);
+});
+});
+return promise;
+}
+
+
+
+$(()=>{
+
+getTeams().then((teams)=>{
+var teamsRef=$(`#teams`);
+var ul;
+var header;
+for(var i=0;i<teams.length;i++)
+{
+header=$(`<h3>${teams[i].name}</h3>`);
+ul=$(`<ul id='T${teams[i].id}' class='list'></ul>`);
+teamsRef.append(header);
+teamsRef.append(ul);
+ul.disableSelection();
+ul.sortable({
+connectWith : ".list",
+dropOnEmpty : true,
+remove : function(ev,ui){
+//alert("Remove "+ul.prop('id')+" : "+ui.item.prop('id'));
+},
+receive : (ev,ui)=>{
+var id=ui.item.prop('id');
+var teamId=$(ev.target).prop('id');
+teamId=teamId.substring(1);
+var obj={"receive" : teamId, "id" : id};
+updateTeams(obj).then((result)=>{
+alert(result.success);
+},(error)=>{
+alert(error);
+});
+}
+});
+}
+
+
+
+
+},(error)=>{
+console.log(error.message);
+});
+
+getPlayers().then((players)=>{
+var playersRef=$("#players");
+var teamRef;
+for(var i=0;i<players.length;i++)
+{
+if(players[i].teamId==null) playersRef.append($(`<li id='${players[i].id}'>${players[i].name}</li>`));
+else
+{
+teamRef=$(`#T${players[i].teamId}`);
+teamRef.append($(`<li id='${players[i].id}'>${players[i].name}</li>`));
+}
+
+}
+playersRef.disableSelection();
+playersRef.sortable({
+connectWith : ".list",
+dropOnEmpty : true,
+remove : function(ev,ui){
+//alert("Remove : "+ui.item.prop('id'));
+},
+receive : function(ev,ui){
+//alert("Receive : "+ui.item.prop('id'));
+var id=ui.item.prop('id');
+var obj={"receive" : "players", "id" : id};
+updateTeams(obj).then((result)=>{
+alert(result.success);
+},(error)=>{
+alert(error.message);
+});
+}
+});
+},(error)=>{
+console.log(error.message);
+});
+
+/*
+$("#players").disableSelection();
+$("#players").sortable({
+connectWith : "#team1, #team2",
+dropOnEmpty : true
+});
+
+$("#team1").disableSelection();
+$("#team1").sortable({
+connectWith : "#players,#team2",
+dropOnEmpty : true
+});
+
+$("#team2").disableSelection();
+$("#team2").sortable({
+connectWith : "#players,#team1",
+dropOnEmpty : true
+});
+*/
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 81</h1>
+<h3>Players</h3>
+<ul id='players' class='list'>
+
+</ul>
+<br><br>
+<div id='teams'>
+
+</div>
+
+
+<br><a href='/'>Home</a>
+</body>
+</html>

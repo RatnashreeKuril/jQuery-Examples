@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+$(()=>{
+
+// event bubbling
+
+$("#s1").click((ev)=>{
+alert("s1 clicked");
+alert(" target : "+$(ev.target).html());
+alert(" current target : "+$(ev.currentTarget).html());
+});
+
+
+$("#s2").click((ev)=>{
+alert("s2 clicked");
+});
+
+
+$("#s3").click((ev)=>{
+alert("s3 clicked");
+ev.stopPropagation();
+});
+
+$("#s4").click((ev)=>{
+alert("s4 clicked");
+
+});
+
+
+$("#s5").click((ev)=>{
+alert("s5 clicked");
+});
+
+
+});
+
+
+</script>
+</head>
+<body>
+<h1>Example 25</h1>
+
+<div id='s1'>
+<h1 id='s2'>Thinking Machines</h1>
+<span id='s3'>
+<h3 id='s4'>We teach more than we promise to teach</h3>
+<h3 id='s5'>Think Big</h3>
+</span>
+</div>
+
+
+<br><a href='/'>Home</a>
+</body>
+</html>

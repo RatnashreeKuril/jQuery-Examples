@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+function doSomething()
+{
+alert($("#crudPanel").tabs("option","active"));
+}
+
+function onActivated(ev,ui)
+{
+alert(ui.oldTab.prop("id"));
+alert(ui.newTab.prop("id"));
+}
+
+
+
+$(()=>{
+$("#crudPanel").tabs({
+active : 2,
+show : {effect : "blind",duration : 200},
+activate : onActivated
+
+});
+});
+</script>
+</head>
+<body>
+<h1>Example 71</h1>
+
+<!-- It is important to create this with either ul or ol(ordered list) -->
+<div id='crudPanel'>
+<ul>
+<li id='t1'><a href='#viewPane'>View</a></li>
+<li id='t2'><a href='#addPane'>Add</a></li>
+<li id='t3'><a href='#editPane'>Edit</a></li>
+<li id='t4'><a href='#deletePane'>Delete</a></li>
+</ul>
+
+
+<!-- It is important to create this with either ul or ol(ordered list) -->
+
+<div id='viewPane'>
+<h1>Students</h1>
+</div>
+
+<div id='addPane'>
+<h1>Student (Add Module)</h1>
+</div>
+
+<div id='editPane'>
+<h1>Student (Edit Module)</h1>
+</div>
+
+<div id='deletePane'>
+<h1>Student (Delete Module)</h1>
+</div>
+</div>
+<br>
+<button onClick='doSomething()' type='button'>Click me</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

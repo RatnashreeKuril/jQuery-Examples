@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+
+<style>
+.ui-selected
+{
+background-color : orange;
+color : white;
+}
+table
+{
+border : 1px solid gray;
+border-collapse : collapse;
+}
+table th
+{
+border : 1px solid gray;
+font-weight : bold;
+}
+table td
+{
+cursor : pointer;
+padding : 5px;
+border : 1px solid gray;
+}
+
+</style>
+
+<script>
+$(()=>{
+$("#citiesView>tbody").selectable({
+filter : "tr",
+selected : function(ev,ui){
+alert(ui.selected.id);
+}
+});
+});
+</script>
+
+</head>
+<body>
+<h1>Example 85</h1>
+<table id='citiesView'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>City Code</th>
+<th>City</th>
+</tr>
+</thead>
+<tbody>
+
+<tr id='201'>
+<td>1</td>
+<td>201</td>
+<td>Ujjain</td>
+</tr>
+
+<tr id='202'>
+<td>2</td>
+<td>202</td>
+<td>Indore</td>
+</tr>
+
+
+<tr id='209'>
+<td>3</td>
+<td>209</td>
+<td>Dewas</td>
+</tr>
+
+
+</tbody>
+</table>
+
+<br><br><a href='/'>Home</a>
+</body>
+</html>

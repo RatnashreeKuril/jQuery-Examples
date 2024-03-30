@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+// practice
+
+
+function oneClicked()
+{
+//$("p").hide();
+//$("p").fadeOut();
+$("p").slideUp();
+}
+function twoClicked()
+{
+//$("p").show();
+//$("p").fadeIn();
+$("p").slideDown();
+}
+
+function threeClicked()
+{
+$("p").slideToggle();
+}
+
+
+
+// practice
+
+
+
+
+
+
+
+
+
+/*
+function oneClicked()
+{
+//$("p").hide();
+//$("p").hide(1000);
+//$("p").hide('slow');
+//$("p").hide('fast');
+//$("p").fadeOut('slow');
+//$("p").fadeOut(5000);
+//$("p").slideUp("slow");
+$("p").slideUp("fast");
+}
+
+function twoClicked()
+{
+//$("p").show();
+//$("p").show(1000);
+//$("p").show('slow');
+//$("p").show('fast');
+//$("p").fadeIn('slow');
+//$("p").fadeIn(2000);
+//$("p").slideDown("slow");
+$("p").slideDown("fast");
+}
+
+function threeClicked()
+{
+//$("p").slideToggle("slow");
+//$("p").slideToggle("fast");
+$("p").slideToggle(200);
+}
+*/
+</script>
+</head>
+<body>
+<h1>Example 41</h1>
+
+<p>
+Round 1: Online Coding Round
+It comprises two coding interview questions to be completed within 60 minutes. Flipkart interview experience holders state that both questions are based on basic data structures and algorithms.
+
+Round 2 and 3: Online Coding Round
+These interview rounds assess a candidate's proficiency in problem-solving, data structures, and algorithms, including coding problems on arrays, lists, graphs, trees, dynamic programming, recursion, linked list, queues, trees, maps, etc. 
+
+Candidates can put up questions to clear doubts. Talking to the interviewer while coding and conveying your approach is recommended to earn extra points. 
+
+Round 4: Hiring Manager Round
+An engineering manager of the team you are interviewing for will use several behavioral, resume-based and scenario-based questions to evaluate your soft and technical skills. The HR round focuses on understanding how well a candidate can fit into the Flipkart culture. 
+
+</p>
+
+<button type='button' onClick='oneClicked()'>Button 1</button><br/><br/>
+<button type='button' onClick='twoClicked()'>Button 2</button><br/><br/>
+<button type='button' onClick='threeClicked()'>Button 3</button><br/><br/>
+<br><a href='/'>Home</a>
+</body>
+</html>

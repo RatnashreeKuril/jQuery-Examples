@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>AJAX Without JQuery</title>
+<style>
+table {
+border : 1px solid black;
+border-collapse : collapse;
+}
+table th,td{
+border : 1px solid black;
+}
+</style>
+<script>
+// In this example we are not using JQUERY 
+
+// practice
+
+window.addEventListener('load',()=>{
+var xhr=new XMLHttpRequest();
+xhr.onreadystatechange=()=>{
+
+if(xhr.readyState==4)
+{
+if(xhr.status==200)
+{
+var customers=JSON.parse(xhr.responseText);
+//alert(customers);
+var tbl=document.getElementById("employeesViewTable");
+var tbd=tbl.getElementsByTagName("tbody")[0];
+var row,cell;
+
+for(var i=0;i<customers.length;i++)
+{
+row=document.createElement("tr");
+cell=document.createElement("td");
+cell.append(document.createTextNode(i+1));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(customers[i].id));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(customers[i].firstName));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(customers[i].lastName));
+row.append(cell);
+
+tbd.append(row);
+
+}
+
+}
+else
+{
+console.log('some problem');
+}
+
+}
+
+};
+
+xhr.open("GET","getEmployees",true);
+xhr.send();
+
+
+});
+
+
+
+
+// practice
+
+
+/*
+window.addEventListener('load',()=>{
+var xhr=new XMLHttpRequest();
+xhr.onreadystatechange=function(){
+//console.log(xhr.readyState);
+if(xhr.readyState==4 && xhr.status==200)
+{
+var employees=JSON.parse(xhr.responseText);
+//alert(employees);
+
+var tbl=document.getElementById("employeesViewTable");
+var tbd=tbl.getElementsByTagName('tbody')[0];
+var row,cell;
+var i=0;
+while(i<employees.length)
+{
+row=document.createElement("tr");
+cell=document.createElement("td");
+cell.append(document.createTextNode(i+1));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(employees[i].id));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(employees[i].firstName));
+row.append(cell);
+
+cell=document.createElement("td");
+cell.append(document.createTextNode(employees[i].lastName));
+row.append(cell);
+
+tbd.append(row);
+i++;
+}
+}
+
+
+};
+
+xhr.open('GET','getEmployees',true);
+xhr.send();
+
+});
+
+
+*/
+
+</script>
+
+</head>
+<body>
+<h1>Example 45 - AJAX - 1 (Without JQUERY)</h1>
+<h2>Employees</h2>
+<table id='employeesViewTable'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>Id.</th>
+<th>First name</th>
+<th>Last name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<br><a href='/'>Home</a>
+</body>
+</html>

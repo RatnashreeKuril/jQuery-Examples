@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+
+.homelink
+{
+position : absolute;
+top : 5px;
+right : 10px;
+}
+.checkers
+{
+position : absolute;
+bottom : 10px;
+border : 1px solid grey;
+padding : 5px;
+left : 5px;
+right : 5px;
+}
+.city
+{
+position : relative;
+top : 80px;
+left : 25px;
+border : 1px solid red;
+width : 200px;
+padding : 5px;
+margin-top : 10px;
+}
+
+
+
+</style>
+<script>
+
+// practice
+var divisionWidth;
+var originalLeft;
+$(()=>{
+originalLeft=$(".city").css('left');
+divisionWidth=parseFloat($(".city").css('width'));
+
+$(window).resize((ev)=>{
+});
+
+$("input:checkbox").click((ev)=>{
+var divisionId=$(ev.target).val();
+var divisionRef=$("#"+divisionId);
+if($(ev.target).is(":checked"))
+{
+var bodyWidth=parseFloat($("body").css('width'));
+var left=(bodyWidth-divisionWidth-30)+"px";
+console.log(left);
+divisionRef.animate({left:left},'slow');
+}
+else
+{
+divisionRef.animate({left:originalLeft},'slow');
+}
+
+});
+});
+
+
+
+
+
+
+// practice
+
+
+
+
+
+/*
+$(()=>{
+var originalLeft=$(".city").css('left');
+$("input:checkbox").click((ev)=>{
+//alert('great');
+//alert($(ev.target).val());
+var checkboxRef=$(ev.target);
+var divisionId=checkboxRef.val();
+var isChecked=checkboxRef.is(":checked");
+//alert(divisionId);
+//alert(checkboxRef);
+var divisionRef=$("#"+divisionId);
+//alert(divisionRef.html());
+
+if(isChecked)
+{
+var bodyWidth=parseFloat($("body").css("width"));
+var divisionWidth=parseFloat(divisionRef.css("width"));
+var left=(bodyWidth-divisionWidth-30)+"px";
+//alert(bodyWidth+", "+divisionWidth+", "+left);
+divisionRef.animate({left : left},"slow");
+}
+else
+{
+divisionRef.animate({left : originalLeft},"slow");
+}
+});
+});
+*/
+</script>
+</head>
+<body>
+<h1>Example 43</h1>
+
+<h3 style='left:30px;position:absolute'>Tour options</h3>
+<h3 style='right:30px;position:absolute'>Selected tour options</h3>
+
+<div class='city' id='d1'>
+<b>Ujjain</b><br>
+<u>The city of Gods</u>
+</div>
+
+<div class='city' id='d2'>
+<b>Bhopal</b><br>
+<u>The city of lakes</u>
+</div>
+
+<div class='city' id='d3'>
+<b>Jaipur</b><br>
+<u>Pink city</u>
+</div>
+
+
+<div class='checkers'>
+&lt; Ujjain &gt; <input type='checkbox' value='d1'>&nbsp;&nbsp;&nbsp;
+&lt; Bhopal &gt; <input type='checkbox' value='d2'>&nbsp;&nbsp;&nbsp;
+&lt; Jaipur &gt; <input type='checkbox' value='d3'>&nbsp;&nbsp;&nbsp;
+</div>
+
+<a class='homelink' href='/'>Home</a>
+</body>
+</html>

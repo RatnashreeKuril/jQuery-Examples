@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#thinkingmachines").hide();
+});
+
+function onOpen()
+{
+$("#notice").html("Opened");
+}
+
+function onClose()
+{
+$("#notice").html("Closed");
+}
+
+function onBeforeClose()
+{
+$("#notice").html("About to Close");
+}
+
+function onStartDrag()
+{
+$("#notice").html("Dragging started");
+}
+
+function onStopDrag()
+{
+$("#notice").html("Dragging stopped");
+}
+var x=0;
+function onDrag()
+{
+x++;
+$("#notice").html("Dragging : "+x);
+}
+function onCreate()
+{
+$("#name").val("cool");
+$("#notice").html("Dialog created");
+}
+
+const doSomething=()=>{
+
+$("#thinkingmachines").dialog({
+"title" : "Notification",
+"create" : onCreate,
+"open" : onOpen,
+"close" : onClose,
+"dragStart" : onStartDrag,
+"dragStop" : onStopDrag,
+"drag" : onDrag,
+"beforeClose" : onBeforeClose,
+"show" : {effect : "fadeIn", duration : 200},
+"hide" : {effect : "fadeOut", duration : 4000}
+});
+
+
+}
+
+
+
+</script>
+</head>
+<body>
+<h1>Example 70</h1>
+
+<div id='thinkingmachines'>
+<h1>Thinking Machines</h1>
+<h3>Think Big</h3>
+<h5>We Teach More Than We Promise To Teach</h5>
+</div>
+<br>
+<br>
+<div id='notice' style='color:red;font-size:24pt'></div>
+<br>
+Enter your name 
+<input type='text' id='name'>
+<br/>
+<br/>
+<button type='button' onClick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

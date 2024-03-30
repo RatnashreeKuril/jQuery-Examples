@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+
+// practice
+
+
+$(()=>{
+$("#b1").click((ev)=>{
+var cb=$(".cb");
+//cb.attr('checked',!cb.attr('checked'));
+//cb.prop('checked',!cb.prop('checked'));
+cb.prop('checked',!cb.is(":checked"));
+});
+});
+
+
+
+
+
+// practice
+
+
+
+
+
+
+
+/*
+$(()=>{
+
+$("#b1").click((ev)=>{
+var cb=$(".cb");
+//$(cb).attr("checked",!$(cb).attr("checked"));
+//$(cb).prop("checked",!$(cb).prop("checked"));
+$(cb).prop("checked",!$(cb).is(":checked"));
+});
+
+
+
+
+
+
+
+$("#b1").click(()=>{
+var cc=$(".cb");
+// 1)
+// cc.attr('checked',!cc.attr("checked"));
+
+// as per the document of newer versions of jquery
+// we should use 'prop' instead of 'attr'
+// 2)
+// cc.prop('checked',!cc.prop("checked"));
+ 
+// 3)
+cc.prop('checked',!cc.is(":checked"));
+
+
+});
+
+
+
+});
+*/
+</script>
+</head>
+<body>
+<h1>Example 27</h1>
+<input class='cb' type='checkbox'><br>
+<button type='button' id='b1'>Click me</button>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

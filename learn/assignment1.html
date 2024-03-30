@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+
+function getFilms(languageId)
+{
+var promise=new Promise(function(resolve){
+fetch(`getFilmsByLanguage?languageId=${languageId}`).then((response)=>{
+return response.json();
+}).then((films)=>{
+resolve(films);
+});
+});
+
+
+return promise;
+}
+
+function populatePanel(languageId,films)
+{
+//alert(languageId);
+//alert(films);
+var panelRef=$(`div[languageId=${languageId}]`);
+//alert(panelRef.html());
+var panelContent="";
+panelContent+="<ul>";
+
+for(var i=0;i<films.length;i++)
+{
+panelContent+=`<li>${films[i].title}</li>`;
+}
+
+panelContent+="</ul>";
+
+panelRef.append(panelContent);
+panelRef.css('height','auto');
+}
+
+var ds=[];
+$(()=>{
+
+
+$.get("/getLanguages",function(languages){
+
+var containerDivision=$("#languages");
+var header,panel;
+
+for(var i=0;i<languages.length;i++)
+{
+header=$(`<h1 id=${languages[i].id}>${languages[i].name}</h1>`);
+panel=$(`<div languageId=${languages[i].id}>Films with language ${languages[i].name}</div>`);
+containerDivision.append(header);
+containerDivision.append(panel);
+}
+
+getFilms(languages[0].id).then(function(films){
+//alert(films);
+ds.push({"languageId" : languages[0].id, "films" : films});
+
+populatePanel(languages[0].id,films);
+
+});
+
+$("#languages").accordion({
+"activate" : function(ev,ui){
+//alert($(ui.newHeader).html());
+//alert($(ui.newPanel).html());
+var languageId=$(ui.newPanel).attr('languageId');
+if(!languageId) return;
+for(var i=0;i<ds.length;i++)
+{
+if(languageId==ds[i].languageId) return;
+}
+getFilms(languageId).then(function(films){
+//alert("films : "+films);
+ds.push({"languageId" : languageId, "films" : films});
+populatePanel(languageId,films);
+});
+
+}
+});
+
+
+
+});
+
+
+});
+
+
+</script>
+</head>
+<body>
+<h1>Assignment 1</h1>
+<div id='languages'>
+
+
+</div>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

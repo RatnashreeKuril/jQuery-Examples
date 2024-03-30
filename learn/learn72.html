@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+function updateNotice()
+{
+$("#notice").html("Value : "+$("#myScale").slider("value"));
+}
+
+$(()=>{
+$("#myScale").slider({
+min : 0,
+max : 50,
+value : 35,
+slide : updateNotice,
+stop : updateNotice
+});
+$("#notice").html("Value : "+$("#myScale").slider("value"));
+});
+
+function doSomething()
+{
+alert($("#myScale").slider("value"));
+}
+
+</script>
+</head>
+<body>
+<h1>Example 72</h1>
+<div id='myScale'></div>
+<br><br>
+<div id='notice'></div>
+<br><br>
+<button type='button' onClick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

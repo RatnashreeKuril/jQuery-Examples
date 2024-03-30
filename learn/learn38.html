@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+.xyz
+{
+height : 40px;
+overflow : hidden;
+}
+</style>
+<script>
+
+// practice
+
+
+$(()=>{
+var ih=$(".xyz").css("height");
+$(".xyz").css('height','auto');
+var ah=$(".xyz").css('height');
+$(".xyz").css('height',ih);
+
+
+$("#abcd").click((ev)=>{
+ev.preventDefault();
+if($(".xyz").css('height')==ih)
+{
+$(".xyz").animate({'height':ah},'slow','linear',()=>{
+$(ev.target).html("Show less");
+});
+
+}
+else
+{
+$(".xyz").animate({'height':ih},'slow','swing',()=>{
+$(ev.target).html("Show more");
+});
+
+}
+
+});
+});
+
+
+
+
+
+// practice
+
+
+
+
+
+/*
+$(()=>{
+var ih=$(".xyz").css("height");
+
+// code to capture auto height because 
+// animate property doesn't work for auto
+$(".xyz").css("height","auto");
+var ah=$(".xyz").css("height");
+$(".xyz").css("height",ih);
+
+
+$("#abcd").click((ev)=>{
+ev.preventDefault();
+if($(".xyz").css("height")==ih)
+{
+
+// animate property doesn't work for auto
+
+
+$(".xyz").animate({'height':ah},500,'linear',()=>{
+$(ev.target).html("show less");
+});
+
+}
+else
+{
+$(".xyz").animate({'height':ih},500,'swing',()=>{
+$(ev.target).html("show more");
+});
+
+}
+
+});
+});
+*/
+</script>
+</head>
+<body>
+<h1>Example 38</h1>
+<div class='xyz'>
+Ujjain is the city of Gods<br>
+I live in Ujjain<br>
+Ujjain is a cool place<br>
+Indore is 54KM away from Ujjain</br>
+Ujjain is the city of Gods<br>
+I live in Ujjain<br>
+Ujjain is a cool place<br>
+Indore is 54KM away from Ujjain</br>
+Ujjain is the city of Gods<br>
+I live in Ujjain<br>
+Ujjain is a cool place<br>
+Indore is 54KM away from Ujjain</br>
+Ujjain is the city of Gods<br>
+I live in Ujjain<br>
+Ujjain is a cool place<br>
+Indore is 54KM away from Ujjain</br>
+Ujjain is the city of Gods<br>
+I live in Ujjain<br>
+Ujjain is a cool place<br>
+Indore is 54KM away from Ujjain</br>
+Bhopal is the capital of Madhya Pradesh
+</div>
+<a id='abcd' href=''>Show more</a>
+<br><br>
+<br><a href='/'>Home</a>
+</body>
+</html>

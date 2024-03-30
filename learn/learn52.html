@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#technologies").accordion({
+"active" : 1,
+"collapsible" : true,
+"header" : "h4",
+"activate" : doSomething
+});
+
+});
+
+function doSomething(ev,ui)
+{
+alert($(ui.oldHeader).html());
+alert($(ui.oldPanel).html());
+alert($(ui.newHeader).html());
+alert($(ui.newPanel).html());
+}
+
+</script>
+</head>
+<body>
+<h1>Example 24</h1>
+
+<div id='technologies'>
+
+
+<h4>C Programming</h4>
+<div>
+If Computer Science is your branch and c is not the first programming
+language that you have learnt, then may GOD help you.
+</div>
+
+
+
+<h4>C++ Programming</h4>
+<div>
+For strong Object Oriented Programming Skills<br>
+Multithreading, networking, GUI Programming, IOT apps, all can be 
+developed using c++
+</div>
+
+
+
+
+<h4>Data structures</h4>
+<div>
+Data structures is the core behind the core of every application.
+The browser that you are using maintains various types of data 
+structures to render page.
+</div>
+
+
+
+</div> <!-- technologies division ends here -->
+
+
+<br><a href='/'>Home</a>
+</body>
+</html>

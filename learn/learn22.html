@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+.xyz
+{
+display : none;
+}
+</style>
+<script>
+
+// practice
+
+$(()=>{
+$("#feature").click((ev)=>{
+$("#something").toggleClass("xyz");
+});
+});
+
+
+// practice
+
+
+
+
+/*
+$(()=>{
+$("#feature").click((ev)=>{
+$("#something").toggleClass("xyz");
+});
+});
+*/
+</script>
+</head>
+<body>
+<h1>Example 22</h1>
+<div id='something'>
+<h1>Thinking Machines</h1>
+<h3>Think Big</h3>
+</div>
+
+
+Hide <input type='checkbox' id='feature'><br>
+
+
+<br><a href='/'>Home</a>
+</body>
+</html>

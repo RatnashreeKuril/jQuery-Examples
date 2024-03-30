@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<link rel='stylesheet' href='fontawesome-6.5.1/css/all.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+table
+{
+border : 1px solid black;
+border-collapse : collapse;
+}
+table th
+{
+border : 1px solid black;
+padding : 2px;
+}
+table td
+{
+padding : 2px;
+border : 1px solid black;
+cursor : pointer;
+}
+.paginationControls
+{
+padding : 5px;
+
+}
+.paginationControls i
+{
+padding : 10px;
+border : 1px solid black;
+cursor : pointer;
+}
+.navigationButtons
+{
+padding : 5px;
+margin : 5px;
+cursor : pointer;
+}
+
+</style>
+
+<script>
+
+const getCustomers=()=>{
+var promise=new Promise((resolve,reject)=>{
+
+fetch("/getCustomers").then((response)=>{
+if(!response.ok) throw Error("Cannot fetch data");
+return response.json();
+}).then((customers)=>{
+resolve(customers);
+}).catch((error)=>{
+reject(error.message);
+});
+
+});
+return promise;
+}
+
+
+var dataModel={
+customers : [],
+pageNumber : 0,
+pageSize : 0,
+numberOfPages : 0,
+numberOfPageNumberTabs : 0
+};
+
+const updateView=()=>{
+
+$("#pageStatus").html(`Page : <b>${dataModel.pageNumber}/${dataModel.numberOfPages}</b>`);
+
+
+//alert(dataModel.pageNumber);
+var startIndex=(dataModel.pageNumber-1)*dataModel.pageSize;
+var endIndex=startIndex+dataModel.pageSize-1;
+if(endIndex>dataModel.customers.length-1)
+{
+endIndex=dataModel.customers.length-1;
+}
+//alert(startIndex+", "+endIndex);
+var tbody=$("#customerView").find("tbody");
+tbody.html("");
+var i=startIndex;
+while(i<=endIndex)
+{
+tbody.append($(`<tr><td>${i+1}</td><td>${dataModel.customers[i].id}</td><td>${dataModel.customers[i].firstName}</td><td>${dataModel.customers[i].lastName}</td></tr>`));
+i++;
+}
+// create pagination controls starts here
+
+var startPageNumberTabFrom;
+var endPageNumberTabAt;
+if(dataModel.pageNumber%dataModel.numberOfPageNumberTabs==0)
+{
+startPageNumberTabFrom=dataModel.pageNumber-(dataModel.numberOfPageNumberTabs-1);
+}
+else
+{
+startPageNumberTabFrom=dataModel.pageNumber-((dataModel.pageNumber%dataModel.numberOfPageNumberTabs)-1);
+}
+
+endPageNumberTabAt=startPageNumberTabFrom+dataModel.numberOfPageNumberTabs-1;
+if(endPageNumberTabAt>dataModel.numberOfPages)
+{
+endPageNumberTabAt=dataModel.numberOfPages;
+}
+
+var k=$("#paginationControlsBox");
+k.html('');
+if(startPageNumberTabFrom>1)
+{
+k.append(`<span><button id=${startPageNumberTabFrom-1} onClick='updatePage(this)' type='button' class='navigationButtons'>&lt;&lt;</button></span>`);
+}
+
+i=startPageNumberTabFrom;
+while(i<=endPageNumberTabAt)
+{
+if(i==dataModel.pageNumber)
+{
+k.append(`<span><button id=${i} disabled type='button' class='navigationButtons'>${i}</button></span>`);
+}
+else
+{
+k.append(`<span><button id=${i} onClick='updatePage(this)' type='button' class='navigationButtons'>${i}</button></span>`);
+}
+i++;
+}
+
+if(endPageNumberTabAt<dataModel.numberOfPages)
+{
+k.append(`<span><button id=${endPageNumberTabAt+1} onClick='updatePage(this)' type='button' class='navigationButtons'>&gt;&gt;</button></span>`);
+}
+// create pagination controls ends here
+
+} // updateView ends
+
+const updatePage=(btn)=>{
+//alert(btn.id);
+dataModel.pageNumber=btn.id;
+updateView();
+}
+
+$(()=>{
+
+getCustomers().then((customers)=>{
+dataModel.customers=customers;
+dataModel.pageNumber=1;
+dataModel.pageSize=10;
+dataModel.numberOfPageNumberTabs=5;
+dataModel.numberOfPages=parseInt(dataModel.customers.length/dataModel.pageSize);
+if(dataModel.customers.length%dataModel.pageSize!=0)
+{
+dataModel.numberOfPages++;
+}
+updateView();
+},(error)=>{
+alert(error);
+});
+});
+
+</script>
+</head>
+<body>
+
+<h1>Example 88</h1>
+<h3>Customers</h3>
+<div id='pageStatus'>
+</div>
+<table id='customerView'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>Id</th>
+<th>First name</th>
+<th>Last name</th>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+
+<div class='paginationControls' id='paginationControlsBox'>
+
+</div>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

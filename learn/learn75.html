@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+#thinkingmachines
+{
+width : 400px;
+height : 300px;
+}
+.helper-border
+{
+border : 1px dotted red;
+}
+#ujjain
+{
+width : 400px;
+height : 300px;
+}
+</style>
+<script>
+$(()=>{
+//$("#thinkingmachines").resizable();
+/*$("#thinkingmachines").resizable({
+animate : true,
+helper : "helper-border"
+});
+
+$("#thinkingmachines").resizable({
+maxWidth : 500,
+maxHeight : 600,
+minWidth : 200,
+minHeight : 300
+});
+
+
+$("#thinkingmachines").resizable({
+aspectRatio : 4/3
+});
+
+
+$("#thinkingmachines").resizable({
+ghost : true
+});
+*/
+
+$("#thinkingmachines").resizable({
+alsoResize : "#ujjain"
+});
+$("#ujjain").resizable();
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 75</h1>
+<div id='thinkingmachines' class='ui-widget-content'>
+<h1 class='ui-widget-header'>Thinking Machines</h1>
+<h3>Think Big</h3>
+</div>
+<br><br>
+<div id='ujjain' class='ui-widget-content'>
+<h1 class='ui-widget-header'>Ujjain</h1>
+<h3>City of GODS</h3>
+</div>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

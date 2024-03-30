@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+.xyz
+{
+color : red;
+}
+.pqr
+{
+color : orange;
+font-size : 24px;
+}
+</style>
+<script>
+// practice
+
+const oneClicked=()=>{
+console.log($(".xyz").css('color'));
+$(".xyz").css('color','blue');
+}
+
+function twoClicked()
+{
+var ff=$('.pqr').css('fontSize');
+console.log(ff);
+ff=parseFloat(ff);
+var k=`${ff*2}px`;
+$(".pqr").css('fontSize',k);
+}
+
+
+// practice
+
+
+
+
+
+
+/*
+
+const oneClicked=()=>{
+alert($(".xyz").css('color'));
+$(".xyz").css('color','blue');
+}
+
+function twoClicked()
+{
+// we should not use this, instead we should opt for 
+// camel case(as per the documentation)
+// Font size will be returned in px in both (camel case and dash seperated)
+//alert($(".pqr").css("font-size")); 
+
+//alert($(".pqr").css("fontSize"));
+
+var ff=$(".pqr").css("fontSize");
+//alert(ff);
+ff=parseFloat(ff);
+//alert(ff);
+var k=`${ff*2}px`;
+alert(k);
+$(".pqr").css('fontSize',k);
+}
+*/
+</script>
+</head>
+<body>
+<h1 class='xyz'>Example 36</h1>
+<div class='pqr'>Ujjain is the city of gods</div><br><br>
+<button type='button' onclick='oneClicked()'>Button 1</button><br><br>
+<button type='button' onclick='twoClicked()'>Button 2</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

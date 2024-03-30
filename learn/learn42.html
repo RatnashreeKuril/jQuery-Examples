@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+// practice
+
+$(()=>{
+$("#ellipses").show();
+$("#moreMatter").hide();
+$("#divTogglerButton").click((ev)=>{
+if($(ev.target).html()=="Show More")
+{
+$("#ellipses").hide();
+$("#moreMatter").show();
+$(ev.target).html("Show Less");
+}
+else
+{
+$("#moreMatter").hide();
+$("#ellipses").show();
+$(ev.target).html("Show More");
+}
+
+
+});
+
+
+});
+
+
+
+
+// practice
+
+
+
+
+
+
+
+
+
+/*
+$(()=>{
+$("#ellipses").show();
+$("#moreMatter").hide();
+
+$("#divTogglerButton").click(function(){
+var txt=$(this).html();
+if(txt==="Show More")
+{
+$("#ellipses").hide();
+$("#moreMatter").show();
+$(this).html("Show Less");
+}
+else
+{
+$("#moreMatter").hide();
+$("#ellipses").show();
+$(this).html("Show More");
+}
+
+});
+
+});
+*/
+
+
+</script>
+</head>
+<body>
+<h1>Example 42</h1>
+
+<div id='amazon'>
+How I Applied: I applied via a referral. I received a phone call from the recruiter who asks me about my current location and interests.
+<span id='ellipses'>....</span>
+<span id='moreMatter'>
+Online Assessment Round: Platform: HackerRank.
+
+The assessment consists of two sections:
+
+Coding Challenge – It consists of two easy coding problems that you need to solve in 105 minutes along with explaining the approach and time complexity. I don’t remember the exact problems, but the topic covered was generally arrayed (insertion in a sorted array using binary search, sorting array based on a condition).
+
+Amazon Work Style Survey – This takes approx. 10-15 minutes to be completed and contains questions to assess your work ethics and principles. It also tests how you approach work in general and whether you are a good fit for the company as per Amazon Leadership Principles. Each question consists of two parts where you have to choose from options like most like me, somewhat like me, etc.
+
+The next day I received an email that I successfully passed the online assessment round and got information about the next three rounds along with some preparatory materials and tips. My next two rounds were scheduled on the same day with a gap of around 3-4 hours between them.
+
+Technical Round 1 (60 minutes): Initially, the interviewer introduced himself and asked me to do the same. Then he asked me to explain a situation where I learned something new or from scratch. This discussion took 5 minutes. After that interviewer jumped to the coding question.
+
+Question 1: Devise a sorting algorithm
+
+I started with a brute force algorithm and the interviewer asked me to think of an optimized way. After some hints, I was able to solve it using heap and wrote the code for the same. I accidentally made a mistake which I corrected on a dry run myself.
+</span>
+
+</div>
+<button type='button' id='divTogglerButton'>Show More</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

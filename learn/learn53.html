@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+var firstNames=["Amit","Sudhir","Shambhu","Gopal","Ganesh","Bobby","Praneet","Lalita","Geeta","Babita","Prakash","Pankaj","Sachin"];
+
+var lastNames=[
+"Sharma",
+"Gupta",
+"Joshi",
+"Ayachit",
+"Gupte",
+"Patidar",
+"Jain",
+"Kelkar",
+"Prajapati"
+];
+
+$(()=>{
+$("#firstName").autocomplete({
+source : firstNames
+});
+
+$("#lastName").autocomplete({
+source : function(data,giveBackThrough){
+var lst=[];
+var i=0;
+while(i<lastNames.length)
+{
+if(lastNames[i].toLowerCase().startsWith(data.term.toLowerCase()))
+{
+lst.push(lastNames[i]);
+}
+i++;
+}
+giveBackThrough(lst);
+}
+});
+
+
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 53</h1>
+First name <input type='text' id='firstName'><br/><br/>
+Last name <input type='text' id='lastName'><br/><br/>
+<br><a href='/'>Home</a>
+</body>
+</html>

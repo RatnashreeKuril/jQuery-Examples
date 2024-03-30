@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+.list
+{
+border : 1px solid gray;
+width : 150px;
+padding : 10px;
+}
+.list li
+{
+padding : 4px;
+list-style : none;
+cursor : pointer;
+}
+.list li:hover
+{
+color : white;
+background-color : orange;
+}
+</style>
+<script>
+var dataModel={
+cities : []
+};
+function getCities()
+{
+var promise=new Promise((resolve,reject)=>{
+fetch('getCities').then((response)=>{
+if(!response.ok) throw Error("Unable to fetch data, try after some time");
+return response.json();
+}).then((cities)=>{
+resolve(cities);
+}).catch((error)=>{
+reject(error);
+});
+});
+
+return promise;
+}
+
+function updateCities(obj)
+{
+var dataString=`sno=${obj.sno}&name=${encodeURIComponent(obj.name)}`;
+var promise=new Promise((resolve,reject)=>{
+
+fetch("/updateCities",{
+"method" : "POST",
+"headers" : {
+"Content-Type" : "application/x-www-form-urlencoded"
+},
+"body" : dataString,
+}).then((response)=>{
+if(!response.ok) throw Error("Unable to fetch data, try after some time");
+return response.json();
+}).then((result)=>{
+resolve(result);
+}).catch((error)=>{
+reject(error);
+});
+});
+return promise;
+}
+
+function onUpdate(ev,ui)
+{
+var oldId=parseInt($(ui.item).prop('id'));
+var index=parseInt(ui.item.index());
+var newId=index+1;
+var ref,insertAfter,refId;
+for(var i=0;i<dataModel.cities.length;i++)
+{
+if(dataModel.cities[i].sno==oldId)
+{
+break;
+}
+}
+
+if(oldId<=index)
+{
+var e=oldId+1;
+while(e<=newId)
+{
+ref=$(`li[id=${e}]`);
+name=ref.text().substring(3);
+f=ref.index();
+newLi=$(`<li id='${e-1}'>${e-1}) ${name}</li>`);
+ref.remove();
+if(f==0) 
+{
+newLi.insertBefore(`#cities>li:eq(1)`);
+}
+else newLi.insertAfter(`#cities>li:eq(${f-1})`);
+updateCities({sno: e-1,name : name}).then((result)=>{
+//alert(result);
+},(error)=>{
+alert(error);
+});
+
+e++;
+}
+}
+else
+{
+var e=oldId-1;
+while(e>=newId)
+{
+ref=$(`li[id=${e}]`);
+name=ref.text().substring(3);
+f=ref.index();
+newLi=$(`<li id='${e+1}'>${e+1}) ${name}</li>`);
+ref.remove();
+newLi.insertAfter(`#cities>li:eq(${f-1})`);
+
+updateCities({sno: e+1,name : name}).then((result)=>{
+//alert(result);
+},(error)=>{
+alert(error);
+});
+
+e--;
+}
+
+}
+
+var name=$(ui.item).text().substring(3);
+//alert(name);
+$(ui.item).remove();
+//alert($("#cities").html());
+if(index==0) $(`<li id=${newId}>${newId}) ${name}</li>`).insertBefore(`#cities>li:first`);
+else $(`<li id=${newId}>${newId}) ${name}</li>`).insertAfter(`#cities>li:eq(${index-1})`);
+//alert($("#cities").html());
+
+updateCities({sno : newId, name : name}).then((result)=>{
+//alert(result);
+},(error)=>{
+alert(error);
+});
+
+
+}
+
+
+$(()=>{
+var ul=$("#cities");
+ul.disableSelection();
+ul.sortable({
+update : onUpdate
+});
+getCities().then((cities)=>{
+dataModel.cities=cities;
+for(var i=0;i<cities.length;i++)
+{
+ul.append($(`<li id='${cities[i].sno}'>${cities[i].sno}) ${cities[i].name}</li>`));
+}
+
+},(error)=>{
+dataModel.cities=[];
+alert(error.message);
+
+});
+
+
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 77</h1>
+<ul id='cities' class='list'>
+
+</ul>
+<br><a href='/'>Home</a>
+</body>
+</html>

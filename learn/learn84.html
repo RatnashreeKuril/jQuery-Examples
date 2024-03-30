@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+.ui-selected
+{
+background-color : black;
+color : white;
+}
+.list
+{
+padding : 5px;
+border : 1px solid gray;
+width : 200px;
+cursor : pointer;
+}
+
+.list li
+{
+list-style : none;
+padding : 2px;
+}
+</style>
+
+<script>
+
+$(()=>{
+$("#cities").selectable({
+selected : function(ev,ui){
+
+$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+
+},
+stop : function(ev){
+
+$("#noticeBoard").html($("<h3>Selected Cities</h3>"));
+
+var selectedItems=$(this).find(".ui-selected");
+//alert(selectedItems.length);
+selectedItems.each((k,v)=>{
+//alert(v.innerHTML);
+
+$("#noticeBoard").append($(`<div>${v.id} - ${v.innerHTML}</div>`));
+
+});
+}
+});
+});
+
+</script>
+</head>
+<body>
+<h1>Example 84</h1>
+<ul id='cities' class='list'>
+<li id='1'>Ujjain</li>
+<li id='2'>Indore</li>
+<li id='3'>Dewas</li>
+<li id='4'>Mhow</li>
+</ul>
+<br>
+
+<div id='noticeBoard'>
+<h3>Selected Cities</h3>
+</div>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

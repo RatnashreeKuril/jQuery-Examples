@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#b1").button();
+$("#homeButton").button();
+$("#ujjain").button();
+$("#indore").button();
+$("#dewas").button();
+
+$("#nationality").buttonset();
+
+$("#nation").buttonset();
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 58</h1>
+<button type='button' id='b1'>Button 1</button><br/><br/>
+
+<label for='ujjain'>Ujjain</label>
+<input type='checkbox' id='ujjain'><br/><br/>
+
+<label for='indore'>Indore</label>
+<input type='checkbox' id='indore'><br/><br/>
+
+<label for='dewas'>Dewas</label>
+<input type='checkbox' id='dewas'><br/><br/>
+
+<div id="nationality">
+<label for='indian'>Indian</label>
+<input type='checkbox' id='indian'><br/><br/>
+
+<label for='american'>American</label>
+<input type='checkbox' id='american'><br/><br/>
+
+<label for='australian'>Australian</label>
+<input type='checkbox' id='australian'>
+</div>
+<br/><br/><br/>
+<div id="nation">
+<label for='india'>India</label>
+<input type='radio' id='india' name="country"><br/><br/>
+
+<label for='america'>America</label>
+<input type='radio' id='america' name="country"><br/><br/>
+
+<label for='australia'>Australia</label>
+<input type='radio' id='australia' name="country">
+</div>
+
+
+
+
+<br/><br/>
+
+
+<br/><br/>
+<br><a href='/' id='homeButton'>Home</a>
+</body>
+</html>

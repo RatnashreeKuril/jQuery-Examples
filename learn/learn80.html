@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<style>
+.list
+{
+border : 1px solid gray;
+width : 150px;
+padding : 10px;
+}
+.list li
+{
+padding : 4px;
+list-style : none;
+cursor : pointer;
+}
+.list li:hover
+{
+color : white;
+background-color : orange;
+}
+</style>
+<script>
+$(()=>{
+$("#players").disableSelection();
+$("#players").sortable({
+connectWith : "#team1, #team2",
+dropOnEmpty : true
+});
+
+$("#team1").disableSelection();
+$("#team1").sortable({
+connectWith : "#players,#team2",
+dropOnEmpty : true
+});
+
+$("#team2").disableSelection();
+$("#team2").sortable({
+connectWith : "#players,#team1",
+dropOnEmpty : true
+});
+
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 80</h1>
+<h3>Players</h3>
+<ul id='players' class='list'>
+<li id='1'>Amit</li>
+<li id='2'>Sunil</li>
+<li id='3'>Ramesh</li>
+<li id='4'>Mohan</li>
+<li id='5'>Mohit</li>
+</ul>
+<br><br>
+
+<h3>Team A</h3>
+<ul id='team1' class='list'>
+</ul>
+
+<h3>Team B</h3>
+<ul id='team2' class='list'>
+</ul>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

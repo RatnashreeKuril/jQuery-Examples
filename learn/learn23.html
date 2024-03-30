@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+.xyz
+{
+cursor : pointer;
+background-color : black;
+color : white;
+}
+</style>
+<script>
+// practice
+
+$(()=>{
+
+$("h3[menuitem]").hover((ev)=>{
+$(ev.target).toggleClass("xyz");
+});
+
+$("h3[menuitem]").click((ev)=>{
+console.log($(ev.target).text());
+console.log($(ev.target).attr("menuitem"));
+});
+
+
+});
+
+
+
+
+
+
+// practice
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+$(()=>{
+$("h3[menuitem]").hover(function(ev){
+$(this).toggleClass("xyz");
+});
+
+$("h3[menuitem]").click((ev)=>{
+alert($(ev.target).text()+" clicked");
+alert($(ev.target).attr("menuitem"));
+});
+
+});
+
+*/
+</script>
+</head>
+<body>
+<h1>Example 23</h1>
+<div>
+<h3 menuitem="0">Ujjain</h3>
+<h3 menuitem="1">Indore</h3>
+<h3 menuitem="2">Mumbai</h3>
+<h3 menuitem="3">Goa</h3>
+<br><br><br>
+<h3>God is great</h3>
+
+
+
+</div>
+
+<br><a href='/'>Home</a>
+</body>
+</html>

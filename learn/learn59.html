@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("input[type=radio]").checkboxradio();
+$("input[type=checkbox]").checkboxradio();
+
+});
+
+</script>
+</head>
+<body>
+<h1>Example 59</h1>
+
+<fieldset>
+<legend>Personal Information</legend>
+<label for='name'>Name</label>
+<input type='text' id='name'>
+<label for='education'>Education</label>
+<input type='text' id='education'>
+</fieldset>
+
+<fieldset>
+<legend>Country</legend>
+<label for='india'>India</label>
+<input type='radio' id='india' value='I' name='country'>
+<label for='america'>America</label>
+<input type='radio' id='america' value='A' name='country'>
+<label for='germany'>Germany</label>
+<input type='radio' id='germany' value='G' name='country'>
+</fieldset>
+
+
+<fieldset>
+<legend>Hobbies</legend>
+
+<label for='reading'>Reading</label>
+<input type='checkbox' id='reading' value='R'>
+
+<label for='movies'>Movies</label>
+<input type='checkbox' id='movies' value='M'>
+
+<label for='rubikcube'>Rubic Cube Solving</label>
+<input type='checkbox' id='rubikcube' value='C'>
+
+</fieldset>
+
+
+
+<br><a href='/'>Home</a>
+</body>
+</html>

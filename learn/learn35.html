@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+// practice
+
+function oneClicked()
+{
+var a='10';
+//console.log(a+20);
+//console.log(parseInt(a)+20);
+
+a="good10";
+//console.log(parseInt(a)+20);
+
+a="10good";
+console.log(parseInt(a)+20);
+
+a='102.2';
+console.log(parseFloat(a)+20);
+
+
+
+
+}
+
+
+function twoClicked()
+{
+var a=30;
+//alert("The number is : "+a);
+alert(`The number is ${a}`);
+}
+
+
+// practice
+
+
+
+
+
+
+
+/*
+const oneClicked=()=>{
+var a='10';
+alert(a+20);
+alert(parseInt(a)+20);
+a='good10';
+alert(parseInt(a)+20);
+a='10good';
+alert(parseInt(a)+20);
+a='102.3';
+alert(parseFloat(a)+20);
+}
+
+function twoClicked()
+{
+var a=10;
+var b=20;
+var c=a+b;
+//alert("Total is : "+c);
+alert(`Total is : ${c}`);
+}
+*/
+</script>
+</head>
+<body>
+<h1>Example 35</h1>
+<button type='button' onclick='oneClicked()'>Button 1</button><br>
+<button type='button' onclick='twoClicked()'>Button 2</button><br>
+<br><a href='/'>Home</a>
+</body>
+</html>

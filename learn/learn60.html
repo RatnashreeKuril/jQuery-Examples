@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+//$("#per").controlgroup();
+$("#per").controlgroup({
+"direction" : "vertical"
+});
+});
+</script>
+</head>
+<body>
+<h1>Example 60</h1>
+
+<fieldset>
+<legend>Personal Information</legend>
+<div id='per'>
+<input type='text' id='name' placeholder='Name'>
+<select id='city'>
+<option value=-1>&lt;select city&gt;</option>
+<option value=101>Ujjain</option>
+<option value=102>Indore</option>
+<option value=103>Dewas</option>
+</select>
+<label for='male'>Male</label>
+<input type='radio' id='male' name='gender'>
+<label for='female'>Female</label>
+<input type='radio' id='female' name='gender'>
+
+</div>
+</fieldset>
+
+
+<br/><br/><a href='/'>Home</a>
+</body>
+</html>

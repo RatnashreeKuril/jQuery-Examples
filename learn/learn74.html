@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+$(()=>{
+$("#myScale").slider({
+range : true,
+min : 1,
+max : 100,
+values : [10,89],
+stop : onStop
+});
+
+$("#city").selectmenu();
+
+});
+
+function onStop(ev,ui)
+{
+alert(ui.values[0]+", "+ui.values[1]);
+
+//alert($("#myScale").slider("values",0));
+alert($("#myScale").slider("values",1));
+
+}
+
+
+</script>
+</head>
+<body>
+<h1>Example 74</h1>
+<div id='myScale'></div>
+<br><br>
+<label for='city'>Select City</label>
+<select id='city'>
+<option disabled selected>Choose a city</option>
+<optgroup label='M.P.'>
+<option value='1'>Ujjain</option>
+<option value='2'>Indore</option>
+<optgroup label='Maharashtra'>
+<option value='3'>Mumbai</option>
+<option value='4'>Pune</option>
+</select>
+<br><br>
+<br><a href='/'>Home</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+
+<script>
+
+function doSomething()
+{
+var x=23;
+try
+{
+if(x<50) throw Error(`Cannot process ${x} less than 50`);
+if(x>500) throw `${x} greater than 500`;
+if(x%2==0) throw x;
+alert(x*x);
+}catch(e)
+{
+if(e instanceof Error) alert("Number less than 50");
+if(typeof(e)==="number") alert("Cannot process even number");
+if(typeof(e)==="string") alert("Number is greater than 500");
+}
+
+}
+</script>
+</head>
+<body>
+<h1>Example 66</h1>
+<button type='button' onClick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+</body>
+</html>

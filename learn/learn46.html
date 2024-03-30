@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>AJAX Without JQuery</title>
+<style>
+table {
+border : 1px solid black;
+border-collapse : collapse;
+}
+table th,td{
+border : 1px solid black;
+}
+</style>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+// In this example we are using JQUERY 
+
+// practice
+
+$(()=>{
+
+$.get("/getEmployees",(employees)=>{
+
+var tbd=$("#employeesViewTable").find("tbody")
+var row,cell;
+for(var i=0;i<employees.length;i++)
+{
+row=$("<tr></tr>");
+cell=$(`<td>${i+1}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].id}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].firstName}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].lastName}</td>`);
+row.append(cell);
+
+tbd.append(row);
+}
+
+});
+
+
+});
+
+
+
+
+
+// practice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+$(()=>{
+$.get("getEmployees",(employees,status)=>{
+//alert(status);
+//alert(employees);
+if(status=="success")
+{
+var tbd=$("#employeesViewTable").find("tbody");
+var i,row,cell;
+i=0;
+while(i<employees.length)
+{
+row=$("<tr>");
+cell=$(`<td>${i+1}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].id}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].firstName}</td>`);
+row.append(cell);
+
+cell=$(`<td>${employees[i].lastName}</td>`);
+row.append(cell);
+tbd.append(row);
+
+i++;
+}
+
+} // if with status==success ends here
+
+});
+});
+*/
+</script>
+
+</head>
+<body>
+<h1>Example 46 - AJAX - 2 (JQUERY get method)</h1>
+<h2>Employees</h2>
+<table id='employeesViewTable'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>Id.</th>
+<th>First name</th>
+<th>Last name</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+<br><a href='/'>Home</a>
+</body>
+</html>

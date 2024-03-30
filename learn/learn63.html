@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+
+<script>
+function computeFactorial(num)
+{
+var promise=new Promise((resolve,reject)=>{
+setTimeout(function(){
+if(num%2==0)
+{
+var e,f;
+e=f=1;
+while(e<=num)
+{
+f=f*e;
+e++;
+}
+resolve(f);
+}
+else
+{
+reject("I am unable to compute factorial of an odd number");
+}
+},6000);
+});
+
+return promise;
+}
+
+function doSomething()
+{
+var num=parseInt(document.getElementById('nn').value);
+computeFactorial(num).then((factorial)=>{
+alert(factorial);
+},(problemText)=>{
+alert(problemText);
+});
+}
+
+
+</script>
+</head>
+<body>
+<h1>Example 63</h1>
+Enter a number <input type='text' id='nn'>
+<button onClick='doSomething()'>Compute Factorial</button>
+<br/><br><a href='/'>Home</a>
+</body>
+</html>

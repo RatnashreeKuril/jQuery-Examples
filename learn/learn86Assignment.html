@@ -1,0 +1,267 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+const getLanguages=()=>{
+var promise=new Promise((resolve,reject)=>{
+fetch("getLanguages").then((response)=>{
+if(!response.ok) throw Error("Cannot fetch departments");
+return response.json();
+}).then((languages)=>{
+resolve(languages);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+
+
+const getFilmsByLanguageId=(languageId)=>{
+var promise=new Promise((resolve,reject)=>{
+fetch(`getFilmsByLanguage?languageId=${languageId}`).then((response)=>{
+if(!response.ok) throw Error("Cannot fetch employees");
+return response.json();
+}).then((films)=>{
+resolve(films);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+
+const getFilmDetails=(filmId)=>{
+var promise=new Promise((resolve,reject)=>{
+fetch(`getFilmDetails?filmId=${filmId}`).then((response)=>{
+if(!(response.ok)) throw Error("Cannot fetch data");
+return response.json();
+}).then((details)=>{
+resolve(details);
+}).catch((error)=>{
+reject(error.message);
+});
+
+});
+
+return promise;
+}
+
+
+const loadFilmDetails=(filmId)=>{
+getFilmDetails(filmId).then((details)=>{
+
+
+$("#titleSpan").html(details.title);
+
+$("#descriptionSpan").html(details.description);
+$("#releaseYearSpan").html(details.releaseYear);
+$("#lengthSpan").html(details.length);
+
+
+
+},(error)=>{
+alert(error);
+});
+}
+
+
+
+
+const loadFilms=(languageId)=>{
+var filmsTableBody=$("#filmsTable").find("tbody");
+getFilmsByLanguageId(languageId).then((films)=>{
+//alert(films);
+
+
+filmsTableBody.empty();
+var row,cell;
+var i=0;
+films.forEach((film)=>{
+
+row=$(`<tr id=${film.id}></tr>`);
+cell=$(`<td>${i+1}</td>`);
+row.append(cell);
+
+cell=$(`<td>${film.id}</td>`);
+row.append(cell);
+
+cell=$(`<td>${film.title}</td>`);
+row.append(cell);
+
+
+filmsTableBody.append(row);
+i++;
+});
+$("#filmsTable").selectable({
+filter : "tr",
+selected : function(ev,ui){
+$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+loadFilmDetails(ui.selected.id);
+
+}
+});
+
+
+},(error)=>{
+//alert(error);
+filmsTableBody.empty();
+filmsTableBody.append($(`<div class='error'>${error}</div>`));
+});
+}
+
+
+
+const loadLanguages=()=>{
+
+getLanguages().then((languages)=>{
+
+var languagesList=$("#languagesList");
+
+languages.forEach((language)=>{
+
+languagesList.append($(`<li id='${language.id}'>${language.name}</li>`));
+
+});
+
+languagesList.selectable({
+selected : function(ev,ui){
+$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+loadFilms(ui.selected.id);
+//alert(ui.selected.id);
+
+}
+});
+
+},(error)=>{
+alert(error);
+});
+
+}
+
+$(()=>{
+loadLanguages();
+});
+
+
+</script>
+
+<style>
+.ui-selected
+{
+background-color : orange;
+color : white;
+}
+.container
+{
+display : flex;
+}
+.leftPanel
+{
+width : 200px;
+padding : 10px;
+margin : 10px;
+border-right : 1px solid orange;
+}
+.rightPanel
+{
+flex-grow : 1;
+margin : 10px;
+padding : 10px;
+}
+.list
+{
+padding : 5px;
+border : 1px solid gray;
+}
+.list li
+{
+list-style : none;
+padding : 2px;
+cursor : pointer;
+}
+table
+{
+border : 1px solid gray;
+border-collapse : collapse;
+}
+table th
+{
+border : 1px solid gray;
+padding : 5px;
+}
+table td
+{
+padding : 10px;
+border : 1px solid gray;
+}
+.detailsPanel
+{
+border : 1px solid gray;
+margin-top : 10px;
+width : 600px;
+padding : 10px;
+}
+.filmsView
+{
+height : 400px;
+border : 1px solid white;
+overFlow : scroll;
+}
+.error
+{
+color : red;
+font-size : 20pt;
+padding : 10px;
+}
+</style>
+
+</head>
+<body>
+<h1>HR Application</h1>
+
+<div class='container'>
+<div class='leftPanel'>
+<h3>Languages</h3>
+<ul id='languagesList' class='list'>
+
+</ul>
+</div>
+<div class='rightPanel'>
+<h3>Films</h3>
+
+<div class='filmsView'>
+<table id='filmsTable'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>Id</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+
+<div class='detailsPanel'>
+<b>Details</b><br>
+Title : <span id='titleSpan'></span><br>
+Description : <span id='descriptionSpan'></span><br>
+Release year : <span id='releaseYearSpan'></span><br>
+Length : <span id='lengthSpan'></span><br>
+
+</div>
+
+</div>
+</div>
+<br><br><a href='/'>Home</a>
+</body>
+</html>

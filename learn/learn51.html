@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+function doSomething()
+{
+var p=new Promise(function(resolve){
+
+setTimeout(function(){
+resolve("God is great"); // the function whose address is passed to then function 
+// will get called because of abcd()
+},10000);
+});
+
+
+return p;
+
+
+}
+function oneClicked()
+{
+var pp=doSomething();
+pp.then(function(slogan){
+console.log(slogan);
+});
+console.log("Ujjain is the city of Gods");
+
+}
+async function twoClicked()
+{
+await doSomething().then(function(slogan){
+console.log(slogan);
+});
+console.log("I live in Ujjain");
+}
+
+function timePass(ms)
+{
+return new Promise(function(resolve){
+setTimeout(resolve,ms);
+});
+}
+
+async function threeClicked()
+{
+console.log("cool");
+await timePass(5000);
+console.log("Too cool");
+}
+
+
+</script>
+</head>
+<body>
+<h1>Example 51</h1>
+<button type='button' onClick="oneClicked()">Button 1</button>
+<br/>
+<br/>
+<button type='button' onClick='twoClicked()'>Button 2</button>
+<br/>
+<br/>
+<button type='button' onClick='threeClicked()'>Button 3</button><br/>
+<br><a href='/'>Home</a>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+// practice
+
+
+$(()=>{
+$(document).keypress((ev)=>{
+if(ev.which>=97 && ev.which<=122)
+{
+var st=ev.target.selectionStart;
+var ed=ev.target.selectionEnd;
+var leftPart=ev.target.value.slice(0,st);
+var rightPart=ev.target.value.slice(ed);
+var middlePart=String.fromCharCode(ev.which-32);
+var newVal=leftPart+middlePart+rightPart;
+ev.target.value=newVal;
+ev.target.selectionStart=st+1;
+ev.target.selectionEnd=st+1;
+ev.preventDefault();
+}
+});
+});
+
+
+
+
+
+
+// practice
+
+
+
+
+
+
+
+
+
+/*
+$(()=>{
+$("#t1").keypress((ev)=>{
+if(ev.which>=97 && ev.which<=122)
+{
+var st=ev.target.selectionStart;
+var ed=ev.target.selectionEnd;
+var leftPart=ev.target.value.slice(0,ev.target.selectionStart);
+var rightPart=ev.target.value.slice(ev.target.selectionEnd);
+var middlePart=String.fromCharCode(ev.which-32);
+//alert(leftPart);
+//alert(middlePart);
+//alert(rightPart);
+var newVal=leftPart+middlePart+rightPart;
+ev.target.value=newVal;
+ev.preventDefault();
+}
+});
+});
+*/
+</script>
+</head>
+<body>
+<h1>Example 34</h1>
+Enter city <input type='text' id='t1'><br><br>
+<br><a href='/'>Home</a>
+</body>
+</html>

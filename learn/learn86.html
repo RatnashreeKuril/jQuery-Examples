@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<link rel='stylesheet' href='fontawesome-6.5.1/css/all.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+const getLanguages=()=>{
+var promise=new Promise((resolve,reject)=>{
+fetch("getLanguages").then((response)=>{
+if(!response.ok) throw Error("Cannot fetch departments");
+return response.json();
+}).then((languages)=>{
+resolve(languages);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+
+
+const getFilmsByLanguageId=(languageId)=>{
+var promise=new Promise((resolve,reject)=>{
+fetch(`getFilmsByLanguage?languageId=${languageId}`).then((response)=>{
+if(!response.ok) throw Error("Cannot fetch employees");
+return response.json();
+}).then((films)=>{
+resolve(films);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+return promise;
+}
+
+const getFilmDetails=(filmId)=>{
+var promise=new Promise((resolve,reject)=>{
+fetch(`getFilmDetails?filmId=${filmId}`).then((response)=>{
+if(!response.ok) throw Error("Cannot fetch data");
+return response.json();
+}).then((filmDetails)=>{
+resolve(filmDetails);
+}).catch((error)=>{
+reject(error.message);
+});
+});
+
+return promise;
+}
+
+
+const loadFilmDetails=(filmId)=>{
+
+var k=$("#filmDetailDivision");
+k.html("");
+k.append($("<b>Details</b><br/>"));
+k.append($("<i class='fa-solid fa-gear fa-spin'></i>"));
+
+getFilmDetails(filmId).then((filmDetails)=>{
+
+k.html("");
+k.append($("<b>Details</b><br/>"));
+
+k.append(`Film Id : ${filmDetails.id}<br/>`);
+k.append(`Title : ${filmDetails.title}<br/>`);
+k.append(`Description : ${filmDetails.description}<br/>`);
+k.append(`Length : ${filmDetails.length}<br/>`);
+k.append(`Release year : ${filmDetails.releaseYear}<br/>`);
+
+
+
+},(error)=>{
+alert(error);
+});
+}
+
+const loadFilms=(languageId)=>{
+var kkk=$("#filmDetailDivision");
+kkk.html("");
+var tbody=$("#filmsView").find("tbody");
+tbody.html("");
+
+tbody.append("<tr><td align='center' colspan='3'><i class='fa-solid fa-gear fa-spin'></i></td></tr>");
+
+getFilmsByLanguageId(languageId).then((films)=>{
+//alert(films);
+tbody.html("");
+if(films.length==0)
+{
+tbody.html("");
+
+tbody.append("<tr><td align='center' colspan='3'>No Films in this languges</td></tr>");
+
+return;
+}
+
+films.forEach((film,i)=>{
+tbody.append($(`<tr id='${film.id}'><td>${i+1}</td><td>${film.id}</td><td>${film.title}</td></tr>`));
+
+});
+
+
+
+},(error)=>{
+//alert(error);
+tbody.html("");
+tbody.append("<tr><td align='center' colspan='3'>"+error+"</td></tr>");
+});
+}
+
+
+
+const loadLanguages=()=>{
+
+getLanguages().then((languages)=>{
+
+var languagesList=$("#languagesList");
+
+
+languages.forEach((language)=>{
+
+languagesList.append($(`<li id='${language.id}'>${language.name}</li>`));
+
+});
+
+languagesList.selectable({
+selected : function(ev,ui){
+$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+loadFilms(ui.selected.id);
+//alert(ui.selected.id);
+
+}
+});
+
+},(error)=>{
+alert(error);
+});
+
+}
+
+$(()=>{
+$("#filmsView>tbody").selectable({
+selected : function(ev,ui){
+$(ui.selected).addClass("ui-selected").siblings().removeClass("ui-selected");
+loadFilmDetails(ui.selected.id);
+
+}
+});
+loadLanguages();
+});
+
+
+</script>
+
+<style>
+.ui-selected
+{
+background-color : orange;
+color : white;
+}
+.container
+{
+display : flex;
+}
+.leftPanel
+{
+width : 200px;
+padding : 10px;
+margin : 10px;
+border-right : 1px solid orange;
+}
+.rightPanel
+{
+flex-grow : 1;
+margin : 10px;
+padding : 10px;
+}
+.list
+{
+padding : 5px;
+border : 1px solid gray;
+}
+.list li
+{
+list-style : none;
+padding : 2px;
+cursor : pointer;
+}
+
+table
+{
+border : 1px solid black;
+border-collapse : collapse;
+}
+table th
+{
+border : 1px solid black;
+padding : 2px;
+}
+table td
+{
+padding : 2px;
+border : 1px solid black;
+cursor : pointer;
+}
+
+
+</style>
+
+</head>
+<body>
+<h1>HR Application</h1>
+
+<div class='container'>
+<div class='leftPanel'>
+<h3>Languages</h3>
+
+<ul id='languagesList' class='list'>
+
+</ul>
+</div>
+<div class='rightPanel'>
+<h3>Films</h3>
+<div>
+<table id='filmsView'>
+<thead>
+<tr>
+<th>S.No.</th>
+<th>Id</th>
+<th>Title</th>
+</tr>
+</thead>
+<tbody>
+
+</tbody>
+</table>
+</div>
+<br/>
+<div id='filmDetailDivision'>
+
+</div>
+
+</div>
+</div>
+<br><br><a href='/'>Home</a>
+</body>
+</html>

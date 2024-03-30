@@ -1,0 +1,168 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+.xyz
+{
+height : 40px;
+overflow : hidden;
+}
+</style>
+<script>
+
+// practice
+var ih=0;
+var ah=0;
+
+$(()=>{
+ih=$("#ddd").css("height");
+$("#ddd").css('height','auto');
+ah=$("#ddd").css('height');
+$("#ddd").css('height',ih);
+
+$(window).on('resize',(ev)=>{
+var isOfInitialHeight=$("#ddd").css('height')==ih;
+
+$("#ddd").css('height','auto');
+ah=$("#ddd").css('height');
+if(isOfInitialHeight) $("#ddd").css('height',ih);
+
+});
+
+
+$("#abcd").click((ev)=>{
+ev.preventDefault();
+if($("#ddd").css('height')==ih)
+{
+$("#ddd").animate({'height':ah},'slow','linear',()=>{
+$(ev.target).html("Show less");
+});
+
+}
+else
+{
+$("#ddd").animate({'height':ih},'slow','swing',()=>{
+$(ev.target).html("Show more");
+});
+
+}
+
+});
+});
+
+
+// practice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+var ih=0;
+var ah=0;
+$(()=>{
+ih=$("#ddd").css('height');
+$("#ddd").css('height','auto');
+ah=$("#ddd").css('height');
+$("#ddd").css('height',ih);
+
+$(window).on('resize',()=>{
+var isOfInitialHeight;
+if($("#abcd").html()=="show more")
+{
+isOfInitialHeight=true;
+}
+else
+{
+isOfInitialHeight=false;
+}
+$("#ddd").css('height','auto');
+ah=$("#ddd").css('height');
+if(isOfInitialHeight) $('#ddd').css('height',ih);
+
+});
+
+
+$("#abcd").click((ev)=>{
+ev.preventDefault();
+if($("#ddd").css('height')==ih)
+{
+$("#ddd").animate({'height':ah},500,'linear',()=>{
+$(ev.target).html("show less");
+});
+
+}
+else
+{
+$("#ddd").animate({'height':ih},500,'swing',()=>{
+$(ev.target).html("show more");
+});
+
+}
+
+});
+});
+*/
+
+
+
+
+</script>
+</head>
+<body>
+<h1>Example 40</h1>
+<div class='xyz' id='ddd'>
+Gone are the days where the brand of your college determined your entry into established global IT firms. All companies have opened their doors to applicants who want to work for them. FANG — Facebook, Amazon, Netflix and Google have all deployed a hiring structure that allows for applicants to get in regardless of their educational backgrounds.
+This shift from traditional hiring quota to a skill-based approach is beneficial for everyone who doesn’t belong to a target school but has the skills to lead positions at such companies. Such companies arrange interviews that question the basic problem solving abilities of the individual rather than rote based knowledge. Problem-Solving abilities are tested using problems that are based on Data Structures and Algorithms- DSA.
+This subject, for many undergrads is a nightmare and is found tough to go about. The roots of how multiple things work in computers/computer science is in DSA. The importance of DSA is not only in terms of a “hot hiring skill” rather an asset that allows better understanding of more complex things in the world of computers.
+DSA covers the various ways in which data can be stored in computers and how we can manipulate and operate them to enable processes in a system. From arrays to linked lists and hashmaps, every topic of DSA is a powerful arrow in a programmer’s quiver. It also facilitates an increase in one’s problem solving ability which is essential in their careers as developers. Algorithms provide a way to solve a problem in a manner that could best fit time and programming space.
+
+All algorithms known to mankind have been useful in developing various applications- right from GPS to the Moon landing in 1969. For starters, it is recommended that learners dive into DSA with a basic understanding of programming concepts and languages. The preferred languages used to practice DSA remain to be — C/C++ and Java. Languages like Python and Java Script are also good but with drawbacks like execution times.
+
+Having a good enough knowledge of programming results in the ability to think in that language, which eventually leads to the ability of solving problems in that language. There are multiple courses and books that one could make use of to acquire knowledge on DSA, what matters is the consistency in practice and passion to learn.
+
+</div>
+<a id='abcd' href=''>show more</a>
+<br><br>
+<div class='xyz'>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+Good bad ugly<br>
+Cool fool<br>
+</div>
+
+<br><br>
+<br><a href='/'>Home</a>
+</body>
+</html>

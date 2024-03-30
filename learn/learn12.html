@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<style>
+table {
+border : 1px solid black;
+border-collapse : collapse;
+}
+
+table td,th {
+border : 1px solid black;
+padding : 10px;
+}
+.xyz{
+color:white;
+background-color:orange;
+}
+.pqr
+{
+color : #ffbb22;
+background-color:red;
+}
+</style>
+<script>
+
+function doSomething()
+{
+// practice
+
+//$("#placementView>tbody>tr:eq(0)").addClass("xyz");
+alert($("#placementView>tbody>tr:eq(0)")[0].tagName);
+
+
+
+// practice
+
+
+//$("#placementView >tbody > tr:eq(0)").addClass("xyz");
+
+//$("#placementView >tbody > tr:eq(0)").addClass("xyz").end().find("tr:eq(3)").addClass("pqr");
+
+//alert($("#placementView >tbody > tr:eq(0)").html());
+
+
+// to get actual DOM Element use get function :-
+//alert($("#placementView >tbody > tr:eq(0)").get(0).innerHTML);
+
+// this can also be written as :-
+//alert($("#placementView >tbody > tr:eq(0)")[0].innerHTML);
+
+//alert($("#placementView >tbody > tr:eq(0)")[0].tagName);
+
+
+}
+
+
+</script>
+
+</head>
+<body>
+<h1>Example 12</h1>
+<p>Thinking Machines - Placements 2021</p><br>
+<p>11111Thinking Machines - Placements 2021</p><br>
+<p>222222Thinking Machines - Placements 2021</p><br>
+Search <input type='text' id='searchBox'>
+<table id='placementView'>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Company</th>
+<th>Package</th>
+</tr>
+</thead>
+<tbody>
+
+<tr>
+<td>Yash Govindani</td>
+<td>Internship</td>
+<td>InvesTrack</td>
+<td><b>15000 Per Month</b></td>
+</tr>
+
+<tr>
+<td>Akshita</td>
+<td>Full time</td>
+<td>Wiley</td>
+<td><b>7 LPA</b></td>
+</tr>
+
+<tr>
+<td>Nikhil Soni</td>
+<td>Full time</td>
+<td>GROW</td>
+<td><b>20 LPA</b></td>
+</tr>
+
+<tr>
+<td>Sapan</td>
+<td>Full time</td>
+<td>MAQ Software</td>
+<td><b>6 LPA</b></td>
+</tr>
+
+<tr>
+<td>Prateek Gothwal</td>
+<td>Full time</td>
+<td>OneIT</td>
+<td><b>4 LPA</b></td>
+</tr>
+
+<tr>
+<td>Ambarish Dashora</td>
+<td>Full time</td>
+<td>Hansen Techsol pvt. Ltd.</td>
+<td><b>4.5 LPA</b></td>
+</tr>
+
+<tr>
+<td>Aadharsh Panwar</td>
+<td>Full time</td>
+<td>Kloudspot</td>
+<td><b>6.3 LPA</b></td>
+</tr>
+
+<tr>
+<td>Jhanvi Tiwari</td>
+<td>Full time</td>
+<td>TCS</td>
+<td><b>3.6 LPA</b></td>
+</tr>
+
+<tr>
+<td>Ankit Bhatia</td>
+<td>Internship</td>
+<td>BinaryDots Technologies</td>
+<td><b>7500/- Per month</b></td>
+</tr>
+
+<tr>
+<td>Yuvraj Singh Pawar</td>
+<td>Full time</td>
+<td>MAQ Software</td>
+<td><b>6 LPA</b></td>
+</tr>
+
+
+</tbody>
+</table>
+<button type='button' onclick='doSomething()'>Click me</button>
+<br><a href='/'>Home</a>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script>
+/*
+$(function(){
+alert($("#tm").html());
+});
+*/
+$(()=>{
+alert($("#tm").html());
+});
+
+$(".tmclass").addClass("cool");
+$(".tmclass").removeClass("cool");
+
+alert($("[domain]").html());
+alert($("[domain='institute']").html());
+alert($("p[domain]").html());
+alert($("div[entity!='city']").html());
+
+</script>
+</head>
+<body>
+<h1>Example 1</h1>
+<span id='tm'>Thinking Machines - Ujjain</span>
+<br><a href='/'>Home</a>
+</body>
+</html>

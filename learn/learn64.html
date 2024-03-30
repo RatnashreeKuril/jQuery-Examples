@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+<script>
+
+function doSomething()
+{
+var num=34;
+try
+{
+if(num<50)
+{
+throw Error("Number less than 50 cannot be processed");
+}
+if(num%2==1)
+{
+throw Error(num+" cannot be processed");
+}
+alert('Great');
+alert('Cool');
+alert('Very good');
+}finally
+{
+alert("Finally : Cool");
+}
+
+}
+
+</script>
+</head>
+<body>
+<h1>Example 64</h1>
+<button type='button' onClick='doSomething()'>Button 1</button>
+
+<br><a href='/'>Home</a>
+</body>
+</html>
