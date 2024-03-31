@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>JQuery Examples</title>
+<link rel='stylesheet' href='jquery-ui-1.13.2/jquery-ui.css'>
+<script src='jquery/jquery-3.7.1.min.js'></script>
+<script src='jquery-ui-1.13.2/jquery-ui.js'></script>
+
+<style>
+.error
+{
+color : red;
+}
+</style>
+
+
+<script>
+
+function validateForm(frm)
+{
+
+var employeeId=frm.employeeId.value.trim();
+var firstName=frm.firstName.value.trim();
+var lastName=frm.lastName.value.trim();
+var dateOfBirth=frm.dateOfBirth.value.trim();
+var basicSalary=frm.basicSalary.value.trim();
+
+var isEmployeeIdValid=true;
+var isFirstNameValid=true;
+var isLastNameValid=true;
+var isDateOfBirthValid=true;
+var isBasicSalaryValid=true;
+var isFormValid=true;
+
+var employeeIdErrorSection=document.getElementById("employeeIdErrorSection");
+var firstNameErrorSection=document.getElementById("firstNameErrorSection");
+var lastNameErrorSection=document.getElementById("lastNameErrorSection");
+var dateOfBirthErrorSection=document.getElementById("dateOfBirthErrorSection");
+var basicSalaryErrorSection=document.getElementById("basicSalaryErrorSection");
+
+employeeIdErrorSection.innerHTML="";
+firstNameErrorSection.innerHTML="";
+lastNameErrorSection.innerHTML="";
+dateOfBirthErrorSection.innerHTML="";
+basicSalaryErrorSection.innerHTML="";
+
+
+
+if(employeeId.length==0) 
+{
+isEmployeeIdValid=false;
+isFormValid=false;
+employeeIdErrorSection.innerHTML="Required";
+
+}
+
+if(firstName.length==0) 
+{
+isFormValid=false;
+isFirstNameValid=false;
+$("#firstNameErrorSection").html("Required");
+
+}
+
+if(lastName.length==0) 
+{
+isFormValid=false;
+isLastNameValid=false;
+lastNameErrorSection.innerHTML="Required";
+}
+
+if(dateOfBirth.length==0) 
+{
+isFormValid=false;
+isDateOfBirthValid=false;
+dateOfBirthErrorSection.innerHTML="Required";
+}
+if(basicSalary.length==0) 
+{
+isFormValid=false;
+isBasicSalaryValid=false;
+basicSalaryErrorSection.innerHTML="Required";
+}
+
+if(isEmployeeIdValid)
+{
+var digits="0123456789";
+var e=0;
+while(e<employeeId.length)
+{
+if(digits.indexOf(employeeId.charAt(e))==-1)
+{
+employeeIdErrorSection.innerHTML="Integer required";
+isFormValid=false;
+isEmployeeIdValid=false;
+break;
+}
+e++;
+}
+}
+if(isBasicSalaryValid)
+{
+var digits="0123456789";
+var e=0;
+while(e<basicSalary.length)
+{
+if(digits.indexOf(basicSalary.charAt(e))==-1)
+{
+basicSalaryErrorSection.innerHTML="Integer required";
+isFormValid=false;
+isBasicSalaryValid=false;
+break;
+}
+e++;
+}
+}
+
+
+if(isFirstNameValid && firstName.length>25)
+{
+firstNameErrorSection.innerHTML="Should not exceed 25 characters";
+isFirstNameValid=false;
+isFormValid=false;
+}
+if(isLastNameValid && lastName.length>25)
+{
+lastNameErrorSection.innerHTML="Should not exceed 25 characters";
+isLastNameValid=false;
+isFormValid=false;
+}
+
+
+
+if(isDateOfBirthValid)
+{
+// dateOfBirth validation starts here
+
+if(dateOfBirth.length<8 || dateOfBirth.length>10)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+if(isDateOfBirthValid)
+{
+var validSet='0123456789/';
+e=0;
+while(e<dateOfBirth.length)
+{
+if(validSet.indexOf(dateOfBirth.charAt(e))==-1)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+break;
+}
+e++;
+}
+
+if(isDateOfBirthValid)
+{
+var s1=dateOfBirth.indexOf("/");
+if(s1==-1)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+}
+if(isDateOfBirthValid)
+{
+var s2=dateOfBirth.indexOf("/",s1+1);
+if(s2==-1)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+}
+if(isDateOfBirthValid)
+{
+if(s1==0 || s2>=dateOfBirth.length-4 || s2-1==s1)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+}
+}
+if(isDateOfBirthValid)
+{
+
+var dayPart=dateOfBirth.substring(0,s1);
+var monthPart=dateOfBirth.substring(s1+1,s2);
+var yearPart=dateOfBirth.substring(s2+1);
+//alert(dayPart);
+//alert(monthPart);
+//alert(yearPart);
+
+var dd=parseInt(dayPart);
+var mm=parseInt(monthPart);
+var yy=parseInt(yearPart);
+if(yy<2000 || yy>=3000)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+
+if(isDateOfBirthValid)
+{
+if(mm<1 || mm>12)
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+}
+if(isDateOfBirthValid)
+{
+var mdays=[31,28,31,30,31,30,31,31,30,31,30,31];
+if(yy%4==0) mdays[1]=29;
+
+if(dd<1 || dd>mdays[mm-1])
+{
+dateOfBirthErrorSection.innerHTML="Invalid date";
+isFormValid=false;
+isDateOfBirthValid=false;
+}
+}
+}
+
+// dateOfBirth validation ends here
+}
+
+return isFormValid;
+}
+
+</script>
+</head>
+<body>
+<h1>Example 90</h1>
+<h2>Form validation (Using very very old style)</h2>
+<!-- Submitting form data with get type request is not a good idea -->
+
+<form method='GET' action='addEmployee' onSubmit='return validateForm(this)'>
+
+Employee Id
+<input type='text' id='employeeId' name='employeeId'>
+<span class='error' id="employeeIdErrorSection"></span>
+<br/>
+First name
+<input type='text' id='firstName' name='firstName'>
+<span class='error' id="firstNameErrorSection"></span>
+
+<br/>
+Last name
+<input type='text' id='lastName' name='lastName'>
+<span class='error' id="lastNameErrorSection"></span>
+<br/>
+Gender &nbsp;&nbsp;&nbsp;&nbsp;
+Male <input type='radio' id='male' value='M' name='gender' checked>
+&nbsp;&nbsp;&nbsp;&nbsp;
+Female <input type='radio' id='female' value='F' name='gender'><br/>
+Date of birth (dd/mm/yyyy)
+<input type='text' id='dateOfBirth' name='dateOfBirth'>
+<span class='error' id="dateOfBirthErrorSection"></span>
+<br/>
+Is Indian
+<input type='checkbox' id='isIndian' name='isIndian' value='Y'><br/>
+Basic salary
+<input type='text' id='basicSalary' name='basicSalary'>
+<span class='error' id="basicSalaryErrorSection"></span>
+<br><br>
+
+<button type='submit'>Add</button>
+</form>
+<br><a href='/'>Home</a>
+</body>
+</html>

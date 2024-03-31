@@ -48,6 +48,43 @@ response.redirect('/index.html');
 })
 
 
+app.get("/addEmployee",function(request,response){
+
+var employeeId=parseInt(request.query.employeeId);
+var firstName=request.query.firstName;
+var lastName=request.query.lastName;
+var gender=request.query.gender;
+var dateOfBirth=request.query.dateOfBirth;
+var isIndian=request.query.isIndian;
+var basicSalary=parseInt(request.query.basicSalary);
+
+console.log(`Employee Id : ${employeeId}`);
+console.log(`First name : ${firstName}`);
+console.log(`Last name : ${lastName}`);
+console.log(`Gender : ${gender}`);
+console.log(`Date of birth : ${dateOfBirth}`);
+console.log(`Is Indian : ${isIndian}`);
+console.log(`Basic salary : ${basicSalary}`);
+
+
+var html="<!DOCTYPE HTML>";
+html+="<html lang='en'>";
+html+="<head>";
+html+="<meta charset='utf-8'>";
+html+="</head>";
+html+="<body>";
+html+="<b>Done</b>";
+html+="<br/><br/>";
+html+="<a href='/index.html'>Home</a>";
+html+="</body>";
+html+="</html>";
+
+response.send(html);
+
+
+});
+
+
 app.get("/getPlayers",function(request,response){
 mariadb.createConnection({
 "user" : "root",
